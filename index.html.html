@@ -1,0 +1,153 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Happy Independence Day!</title>
+    <style>
+        /* --- Basic Setup & Fonts --- */
+        @import url('https://fonts.googleapis.com/css2?family=Laila:wght@700&display=swap');
+
+        body, html {
+            margin: 0;
+            padding: 0;
+            width: 100%;
+            height: 100%;
+            overflow: hidden;
+            background: #000020; /* Deep blue night sky */
+            font-family: 'Laila', sans-serif;
+        }
+
+        /* --- Main Container --- */
+        .container {
+            display: flex;
+            justify-content: center;
+            align-items: center;
+            flex-direction: column;
+            height: 100%;
+            position: relative;
+            z-index: 10;
+        }
+
+        /* --- Ashoka Chakra Styling & Animation --- */
+        .chakra {
+            width: 150px;
+            height: 150px;
+            border: 5px solid #000080; /* Navy Blue */
+            border-radius: 50%;
+            position: relative;
+            animation: spin 10s linear infinite;
+            margin-bottom: 40px;
+        }
+
+        .chakra .spoke {
+            width: 100%;
+            height: 5px;
+            background: #000080;
+            position: absolute;
+            top: 50%;
+            left: 0;
+            transform-origin: center;
+            margin-top: -2.5px; /* Center the spoke */
+        }
+
+        /* Generate 12 spokes, which will create 24 lines when rotated */
+        .spoke:nth-child(1) { transform: rotate(0deg); }
+        .spoke:nth-child(2) { transform: rotate(15deg); }
+        .spoke:nth-child(3) { transform: rotate(30deg); }
+        .spoke:nth-child(4) { transform: rotate(45deg); }
+        .spoke:nth-child(5) { transform: rotate(60deg); }
+        .spoke:nth-child(6) { transform: rotate(75deg); }
+        .spoke:nth-child(7) { transform: rotate(90deg); }
+        .spoke:nth-child(8) { transform: rotate(105deg); }
+        .spoke:nth-child(9) { transform: rotate(120deg); }
+        .spoke:nth-child(10) { transform: rotate(135deg); }
+        .spoke:nth-child(11) { transform: rotate(150deg); }
+        .spoke:nth-child(12) { transform: rotate(165deg); }
+
+        @keyframes spin {
+            from {
+                transform: rotate(0deg);
+            }
+            to {
+                transform: rotate(360deg);
+            }
+        }
+
+        /* --- Heading Text Styling & Animation --- */
+        h1 {
+            font-size: 3rem;
+            text-align: center;
+            color: #fff;
+            text-shadow: 
+                0 0 5px #FF9933, /* Saffron glow */
+                0 0 10px #FF9933,
+                0 0 20px #FFFFFF, /* White glow */
+                0 0 30px #138808, /* Green glow */
+                0 0 40px #138808;
+            animation: fadeIn 5s ease-in-out;
+        }
+        
+        @keyframes fadeIn {
+            from { opacity: 0; transform: translateY(20px); }
+            to { opacity: 1; transform: translateY(0); }
+        }
+
+        /* --- Fireworks Canvas --- */
+        #fireworks-canvas {
+            position: absolute;
+            top: 0;
+            left: 0;
+            width: 100%;
+            height: 100%;
+            z-index: 1;
+        }
+        
+        /* --- Responsive Design --- */
+        @media (max-width: 600px) {
+            h1 {
+                font-size: 2rem;
+            }
+            .chakra {
+                width: 100px;
+                height: 100px;
+                border-width: 3px;
+            }
+            .chakra .spoke {
+                height: 3px;
+                margin-top: -1.5px;
+            }
+        }
+    </style>
+</head>
+<body>
+
+    <!-- Canvas for the fireworks animation -->
+    <canvas id="fireworks-canvas"></canvas>
+
+    <!-- Main content container -->
+    <div class="container">
+        <!-- The Ashoka Chakra -->
+        <div class="chakra">
+            <div class="spoke"></div>
+            <div class="spoke"></div>
+            <div class="spoke"></div>
+            <div class="spoke"></div>
+            <div class="spoke"></div>
+            <div class="spoke"></div>
+            <div class="spoke"></div>
+            <div class="spoke"></div>
+            <div class="spoke"></div>
+            <div class="spoke"></div>
+            <div class="spoke"></div>
+            <div class="spoke"></div>
+        </div>
+
+        <!-- The main heading -->
+        <h1>Happy Independence Day</h1>
+    </div>
+
+    <!-- Link to your external JavaScript file -->
+    <script src="script.js" defer></script>
+</body>
+</html>
