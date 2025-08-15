@@ -1,4 +1,4 @@
-// --- JavaScript for Fireworks ---
+// --- JavaScript for Fireworks (works on all screen sizes) ---
 
 const canvas = document.getElementById('fireworks-canvas');
 const ctx = canvas.getContext('2d');
@@ -27,18 +27,14 @@ function Firework(x, y, targetX, targetY, color) {
 }
 
 Firework.prototype.update = function(index) {
-    // Move the firework
     this.speed *= this.acceleration;
     const vx = Math.cos(this.angle) * this.speed;
     const vy = Math.sin(this.angle) * this.speed;
     this.x += vx;
     this.y += vy;
 
-    // Check if firework reached its target
-    if (Math.abs(this.x - this.targetX) < this.targetRadius && Math.abs(this.y - this.targetY) < this.targetRadius) {
-        // Create explosion
+    if (Math.hypot(this.targetX - this.x, this.targetY - this.y) < 2) {
         createParticles(this.targetX, this.targetY, this.color);
-        // Remove firework from array
         fireworks.splice(index, 1);
     }
 };
@@ -104,18 +100,14 @@ function launchFirework() {
 // --- Animation Loop ---
 function animate() {
     requestAnimationFrame(animate);
-
-    // Create a semi-transparent background for a trailing effect
     ctx.fillStyle = 'rgba(0, 0, 32, 0.15)';
     ctx.fillRect(0, 0, canvas.width, canvas.height);
 
-    // Update and draw fireworks
     fireworks.forEach((firework, i) => {
         firework.update(i);
         firework.draw();
     });
 
-    // Update and draw particles
     particles.forEach((particle, i) => {
         particle.update(i);
         particle.draw();
@@ -133,5 +125,4 @@ setInterval(launchFirework, 1000);
 
 // Start the animation
 animate();
-// Launch one immediately for good measure
 launchFirework();
